@@ -1,10 +1,8 @@
-// Modifier l'interface HeaderProps : 
-interface HeaderProps { 
-  title: string; 
-  onMenuClick: () => void; 
-  userName?: string; 
-  onLogout?: () => void; 
-} 
+import styles from './Header.module.css';
+ 
+interface HeaderProps { title: string; onMenuClick: () => void;  userName?: string; 
+  onLogout?: () => void;}
+ 
   
 export default function Header({ title, onMenuClick, userName, onLogout }: HeaderProps) { 
   return ( 

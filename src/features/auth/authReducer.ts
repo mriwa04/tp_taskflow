@@ -1,6 +1,7 @@
 // src/features/auth/authReducer.ts 
   
-export interface User { 
+export interface User {
+  token: null; 
   id: string; 
   email: string; 
   name: string; 
@@ -8,9 +9,10 @@ export interface User {
   
 export interface AuthState { 
   user: User | null; 
+  token: string | null;  // NOUVEAU 
   loading: boolean; 
   error: string | null; 
-} 
+}  
   
 export type AuthAction = 
   | { type: 'LOGIN_START' } 
@@ -20,6 +22,7 @@ export type AuthAction =
   
 export const initialState: AuthState = { 
   user: null, 
+  token: null,  // NOUVEAU
   loading: false, 
   error: null, 
 }; 
@@ -27,11 +30,17 @@ export const initialState: AuthState = {
 export function authReducer(state: AuthState, action: AuthAction): AuthState { 
   switch (action.type) { 
     case 'LOGIN_START': 
-      return { user: null, loading: true, error: null }; 
+      return {
+     user: null, loading: true, error: null,token: null,}; 
     case 'LOGIN_SUCCESS': 
-      return { user: action.payload, loading: false, error: null }; 
+  return { 
+    user: action.payload, 
+    token: action.payload.token || null,  // NOUVEAU 
+    loading: false, 
+    error: null 
+  };  
     case 'LOGIN_FAILURE': 
-      return { user: null, loading: false, error: action.payload }; 
+      return { user: null, token: null, loading: false, error: action.payload }; 
     case 'LOGOUT': 
       return initialState; 
     default: 

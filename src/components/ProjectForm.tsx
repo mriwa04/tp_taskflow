@@ -26,4 +26,4 @@ export default function ProjectForm({
  <button type="button" onClick={onCancel} className={styles.cancel}>Annuler</button>
  </form>
  )
-}
+} 
